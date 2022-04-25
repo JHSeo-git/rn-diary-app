@@ -1,7 +1,10 @@
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import type { MainTabParamList } from '../navigations.types';
 import FeedsScreen from '../../screens/FeedsScreen';
+import CalendarScreen from '../../screens/CalendarScreen';
+import SearchScreen from '../../screens/SearchScreen';
+import SearchHeader from '../../components/SearchHeader';
+import type { MainTabParamList } from '../navigations.types';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
@@ -24,7 +27,7 @@ function MainTabNavigation() {
       />
       <Tab.Screen
         name="Calendar"
-        component={() => <></>}
+        component={CalendarScreen}
         options={{
           title: '달력',
           tabBarIcon: ({ color, size }) => (
@@ -34,12 +37,13 @@ function MainTabNavigation() {
       />
       <Tab.Screen
         name="Search"
-        component={() => <></>}
+        component={SearchScreen}
         options={{
           title: '검색',
           tabBarIcon: ({ color, size }) => (
             <Icon name="search" size={size} color={color} />
           ),
+          headerTitle: () => <SearchHeader />,
         }}
       />
     </Tab.Navigator>
